@@ -7,7 +7,8 @@ createNewListener = function(){
   $('#new-article').on('click', function(event){
     event.preventDefault();
     console.log(this);
-    url = $(this).attr('href');
+    articleLink = $(this)
+    url = articleLink.attr('href');
 
     request = $.ajax({
       url: url
@@ -15,6 +16,7 @@ createNewListener = function(){
 
     request.done(function(response){
       console.log(response);
+      $('table').prepend(response);
 
     })
   })

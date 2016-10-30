@@ -12,6 +12,9 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    if request.xhr?
+      render :layout => false, :file => 'app/views/articles/_form'
+    end
   end
 
   def edit
