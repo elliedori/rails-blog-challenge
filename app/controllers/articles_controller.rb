@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  # http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -12,6 +12,9 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    if request.xhr?
+      render :layout => false, :file => 'app/views/articles/_form'
+    end
   end
 
   def edit
